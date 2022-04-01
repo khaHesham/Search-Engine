@@ -12,6 +12,10 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Scanner;
 
+import javax.lang.model.element.Element;
+import javax.lang.model.util.Elements;
+
+import org.apache.commons.logging.Log;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -56,6 +60,7 @@ public class Parser_ {
 	{
 		File file=new File("D:\\Executable\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\test.txt");//send path here
 		File tempFile = new File("D:\\Executable\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\temptest.txt");// temp file
+		File metadata = new File("D:\\Executable\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\metadata.txt");// temp file
 		
 		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 			try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
@@ -74,17 +79,33 @@ public class Parser_ {
 				            count++;
 				            writer.newLine();
 				        }
-				        System.out.println("Name: "+ tempFile.getName());
-				        System.out.println("Path: "+ tempFile.getAbsolutePath());
-				        System.out.println("Size: "+ file.length() + " bytes");
-				        System.out.println("Writeable: "+ tempFile.canWrite());
-				        System.out.println("Readable: "+ tempFile.canRead());
-				        System.out.println("Number of words: "+ count);  				        
+				        try (BufferedWriter meta = new BufferedWriter(new FileWriter(metadata))) {
+							meta.write("Name: "+ tempFile.getName());
+							 meta.newLine();
+							 meta.write("Path: "+ tempFile.getAbsolutePath());
+							 meta.newLine();
+							 meta.write("Size: "+ file.length() + " bytes");
+							 meta.newLine();
+							 meta.write("Writeable: "+ tempFile.canWrite());
+							 meta.newLine();
+							 meta.write("Readable: "+ tempFile.canRead());
+							 meta.newLine();
+							 meta.write("Number of words: "+ count);  
+							 meta.newLine();
+							String content = doc.location();
+							meta.write(content);
+							meta.newLine();
+						}			        
 				    }else{
 				        System.out.println("The File does not exist");
 				    }
 			}
+			
+			
+			
 		}
+		
+		
 		 
 		 
 		 

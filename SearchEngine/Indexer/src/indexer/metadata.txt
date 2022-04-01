@@ -1,0 +1,7 @@
+Name: temptest.txt
+Path: D:\Executable\Search-Engine\SearchEngine\Indexer\src\indexer\temptest.txt
+Size: 12939 bytes
+Writeable: true
+Readable: true
+Number of words: 1383
+https://ram-e-shop.com/product/kit-arduino-uno/
