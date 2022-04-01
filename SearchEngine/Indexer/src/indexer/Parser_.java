@@ -68,7 +68,7 @@ public class Parser_ {
 				        
 				        while((word = reader.readLine()) != null) {
 
-				            if(word.length()<=2 || word=="and" || word=="And" ||word=="for" || word=="For") continue;
+				            if(word.length()<=2 || word.equals("and") || word.equals("And") ||word.equals("for") || word.equals("For")) continue;
 
 				            writer.write(word);
 				            count++;
