@@ -26,7 +26,18 @@ import org.jsoup.nodes.Document;
 
 public class Parser_ {
 	private String URL;
-	private String[] Result;
+	//private String[] Result;
+
+	private String[] head;
+	private String[] h1;
+	private String[] h2;
+	private String[] h3;
+	private String[] h4;
+	private String[] body;
+	private String[] footer;
+	private String[] div;
+	private String[] title;
+
 	private boolean isParsed;
 	Document doc;
 	
@@ -35,14 +46,92 @@ public class Parser_ {
 		this.isParsed = false;
 	}
 	
-	public String[] getCopyOfText() {
+	public String[] getCopyOfText_head() {   //head
 		if (this.isParsed == false) {
 			String[] message = {"NULL"};
 			return message;
 		}
 		
-		return this.Result;
+		return this.head;
 	}
+
+	public String[] getCopyOfText_h1() {   //h1
+		if (this.isParsed == false) {
+			String[] message = {"NULL"};
+			return message;
+		}
+		
+		return this.h1;
+
+	}
+
+	public String[] getCopyOfText_h2() {   //h2
+		if (this.isParsed == false) {
+			String[] message = {"NULL"};
+			return message;
+		}
+		
+		return this.h2;
+	}
+
+	public String[] getCopyOfText_h3() {   //h3
+		if (this.isParsed == false) {
+			String[] message = {"NULL"};
+			return message;
+		}
+		
+		return this.h3;
+	}
+
+	public String[] getCopyOfText_h4() {   //h4
+		if (this.isParsed == false) {
+			String[] message = {"NULL"};
+			return message;
+		}
+		
+		return this.h4;
+	}
+
+	public String[] getCopyOfText_body() {   //body
+		if (this.isParsed == false) {
+			String[] message = {"NULL"};
+			return message;
+		}
+		
+		return this.body;
+	}
+
+	public String[] getCopyOfText_footer() {   //footer
+		if (this.isParsed == false) {
+			String[] message = {"NULL"};
+			return message;
+		}
+		
+		return this.footer;
+	}
+
+	public String[] getCopyOfText_div() {   //div
+		if (this.isParsed == false) {
+			String[] message = {"NULL"};
+			return message;
+		}
+		
+		return this.div;
+	}
+
+	public String[] getCopyOfText_title() {   //title
+		if (this.isParsed == false) {
+			String[] message = {"NULL"};
+			return message;
+		}
+		
+		return this.title;
+	}
+
+
+
+
+
 	
 	public void setURL(String url) {
 		this.URL = url;
@@ -51,13 +140,22 @@ public class Parser_ {
 	public void htmlToTextParse() throws IOException {
 		String[] tags = {"p", ""};
 		doc = Jsoup.connect(this.URL).get();
-		String[] myText = doc.body().text().split(" ");
+		//String[] myText = doc.select("head").text().split(" ");  //head h1 h2 h3 h4 body footer div title
 		
+		this.head=doc.select("head").text().split(" ");
+		this.h1=doc.select("h1").text().split(" ");
+		this.h2=doc.select("h2").text().split(" ");
+		this.h3=doc.select("h3").text().split(" ");
+		this.h4=doc.select("h4").text().split(" ");
+		this.body=doc.select("body").text().split(" ");
+		this.footer=doc.select("footer").text().split(" ");
+		this.div=doc.select("head").text().split(" ");
 	
-		
 		this.isParsed = true;
-		this.Result = myText;
+
 	}
+
+
 	
 	public void extraxtMetadata(String path) throws IOException
 	{
@@ -114,7 +212,7 @@ public class Parser_ {
 	
 
 
-	public List<String> RemoveStopWords(String[] words,String stop_words_file_path) throws FileNotFoundException, IOException
+	public List<String> RemoveStopWords(List<String> words,String stop_words_file_path) throws FileNotFoundException, IOException
 	{
 		HashSet<String> stops=new HashSet<>();  //initilalizing set
 		File file=new File(stop_words_file_path);//send path here  will be changed offcourse D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt
@@ -137,7 +235,7 @@ public class Parser_ {
 	}
 	
 
-	public List<String> Removing_Unwanted_Symbols(List<String> withSymbols)
+	public List<String> Removing_Unwanted_Symbols(String[] withSymbols)
 	{
 		List<String> list=new ArrayList<String>();
 	
@@ -175,6 +273,10 @@ public class Parser_ {
 			}	
 			
 		}
+
+
 		return list;
 	}	
+
+	
 }
