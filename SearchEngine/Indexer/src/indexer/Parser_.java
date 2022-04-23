@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.lang.model.element.Element;
@@ -50,7 +53,7 @@ public class Parser_ {
 		doc = Jsoup.connect(this.URL).get();
 		String[] myText = doc.body().text().split(" ");
 		
-		
+	
 		
 		this.isParsed = true;
 		this.Result = myText;
@@ -58,9 +61,9 @@ public class Parser_ {
 	
 	public void extraxtMetadata(String path) throws IOException
 	{
-		File file=new File("D:\\Executable\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\test.txt");//send path here
-		File tempFile = new File("D:\\Executable\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\temptest.txt");// temp file
-		File metadata = new File("D:\\Executable\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\metadata.txt");// temp file
+		File file=new File("D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\test.txt");//send path here
+		File tempFile = new File("D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\temptest.txt");// temp file
+		File metadata = new File("D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\metadata.txt");// temp file
 		
 		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 			try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
@@ -106,12 +109,63 @@ public class Parser_ {
 		}
 		
 		
-		 
-		 
-		 
+		 		 
 	}
 	
+
+
+	public List<String> RemoveStopWords(String[] words,String stop_words_file_path) throws FileNotFoundException, IOException
+	{
+		HashSet<String> stops=new HashSet<>();  //initilalizing set
+		File file=new File(stop_words_file_path);//send path here  will be changed offcourse D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt
+		BufferedReader reader = new BufferedReader(new FileReader(file));
+		
+			String word_;
+			while((word_ = reader.readLine())!=null) {
+
+				stops.add(word_);
+			}
+		reader.close();	
+
+		List<String> list=new ArrayList<String>(); 
+		for(String word : words) {
+			if(!stops.contains(word)  /* && !stops.contains(word+".") && stops.contains(word+":")*/ ) {
+				list.add(word);
+			}
+		}		
+		return list;
+	}
 	
+
+	public List<String> Removing_Unwanted_Symbols(List<String> withSymbols)
+	{
+		List<String> list=new ArrayList<String>();
 	
-	
+		StringBuilder newWord= new StringBuilder();
+		for(String word:withSymbols)
+		{			
+			for(int i=0;i<word.length();i++)
+			{
+				char x=word.charAt(i);
+				if( (x >='a' && x <='z') || (x >= 'A' && x <='Z') || (x >= '0' && x <='9') )
+				{
+					int index=i;
+					newWord.setLength(0);
+					char x2=word.charAt(index);
+					while((x2 >='a' && x2 <='z') || (x2 >= 'A' && x2 <='Z') || (x2 >= '0' && x2 <='9'))
+					{
+						newWord.append(x2);  //append new character to new word iam constructing
+						index++;  //go to the next character
+						if(index<word.length())
+							x2=word.charAt(index);
+						else break;
+					}
+					i=index-1;
+					list.add(newWord.toString().toLowerCase());					
+				}				
+			}	
+			
+		}
+		return list;
+	}	
 }
