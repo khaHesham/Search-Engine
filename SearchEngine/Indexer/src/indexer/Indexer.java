@@ -18,6 +18,7 @@ public class Indexer {
 		// //
 		// parser_.extraxtMetadata(URL);
 
+	
 		List<String> without_stopWords=parser_.RemoveStopWords(myText, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
 		
 
@@ -35,7 +36,7 @@ public class Indexer {
 
 		//System.out.println("without_unwanted_Symbols size : "+without_unwanted_Symbols.size());
 		//step 2 removing unwanted symbol
-		for(String word:without_unwanted_Symbols)   //removing stopwords is done :D
+		for(String word:without_unwanted_Symbols)   //removing unwanted symbols + stopwords is done :D
 		{
 			System.out.println(word);
 		}
