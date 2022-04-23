@@ -16,10 +16,6 @@ public class Indexer {
 		List<String> without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(myText);	
 		List<String> without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
 		
-
-		
-
-	
 		for(String word:without_stopWords)   //removing unwanted symbols + stopwords is done :D
 		{
 			System.out.println(word);
