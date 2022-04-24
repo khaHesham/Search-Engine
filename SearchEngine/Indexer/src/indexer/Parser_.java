@@ -47,7 +47,7 @@ public class Parser_ {
 	}
 	
 	public String[] getCopyOfText_head() {   //head
-		if (this.isParsed == false) {
+		if (this.isParsed == false || this.head==null) {
 			String[] message = {"NULL"};
 			return message;
 		}
@@ -56,7 +56,7 @@ public class Parser_ {
 	}
 
 	public String[] getCopyOfText_h1() {   //h1
-		if (this.isParsed == false) {
+		if (this.isParsed == false || this.h1==null) {
 			String[] message = {"NULL"};
 			return message;
 		}
@@ -66,7 +66,7 @@ public class Parser_ {
 	}
 
 	public String[] getCopyOfText_h2() {   //h2
-		if (this.isParsed == false) {
+		if (this.isParsed == false|| this.h2==null) {
 			String[] message = {"NULL"};
 			return message;
 		}
@@ -75,7 +75,7 @@ public class Parser_ {
 	}
 
 	public String[] getCopyOfText_h3() {   //h3
-		if (this.isParsed == false) {
+		if (this.isParsed == false|| this.h3==null) {
 			String[] message = {"NULL"};
 			return message;
 		}
@@ -84,7 +84,7 @@ public class Parser_ {
 	}
 
 	public String[] getCopyOfText_h4() {   //h4
-		if (this.isParsed == false) {
+		if (this.isParsed == false || this.h4==null) {
 			String[] message = {"NULL"};
 			return message;
 		}
@@ -93,7 +93,7 @@ public class Parser_ {
 	}
 
 	public String[] getCopyOfText_body() {   //body
-		if (this.isParsed == false) {
+		if (this.isParsed == false || this.body==null) {
 			String[] message = {"NULL"};
 			return message;
 		}
@@ -102,7 +102,7 @@ public class Parser_ {
 	}
 
 	public String[] getCopyOfText_footer() {   //footer
-		if (this.isParsed == false) {
+		if (this.isParsed == false || this.footer==null) {
 			String[] message = {"NULL"};
 			return message;
 		}
@@ -111,7 +111,7 @@ public class Parser_ {
 	}
 
 	public String[] getCopyOfText_div() {   //div
-		if (this.isParsed == false) {
+		if (this.isParsed == false || this.div==null) {
 			String[] message = {"NULL"};
 			return message;
 		}
@@ -120,7 +120,7 @@ public class Parser_ {
 	}
 
 	public String[] getCopyOfText_title() {   //title
-		if (this.isParsed == false) {
+		if (this.isParsed == false || this.title==null) {
 			String[] message = {"NULL"};
 			return message;
 		}

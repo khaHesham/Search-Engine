@@ -17,7 +17,7 @@ public class Indexer {
 
 	
 	public static void main(String[] args) throws IOException {
-		 HashMap<String ,HashMap<String,Integer>> invertedIndex=new HashMap<>();
+		 HashMap<String ,HashMap<String,List<Integer>>> invertedIndex=new HashMap<>();
 
 		//loop over all urls
 
@@ -27,32 +27,36 @@ public class Indexer {
 		parser_.htmlToTextParse();
 		List<String> without_unwanted_Symbols=new ArrayList<String>();
 		List<String> without_stopWords=new ArrayList<String>();
+		int i=0;
 
 		//for body
-		String[] myText = parser_.getCopyOfText_body();
-		if(myText.length>0)
+		String[] myText = parser_.getCopyOfText_body() /*{"test","test","test","test","test"}*/;
+		if(myText[0]!="NULL")
 		{
+			
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(myText);	
 			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
 			for (String key : without_stopWords) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
 				}	
-				if (invertedIndex.get(key).equals("body")) {
+				if (invertedIndex.get(key).containsKey("body")) {   //if there is key exist -> increase count
 					//i need to add counter here
-					int i=invertedIndex.get(key).get("body").intValue();
-					invertedIndex.get(key).remove("body");
+					invertedIndex.get(key).get("body").add(i);
 					i++;
-					invertedIndex.get(key).put("body", i);
 				}	
 				else 
-					invertedIndex.get(key).put("body", 1);
+				{
+					invertedIndex.get(key).put("body", new ArrayList<Integer>());
+					invertedIndex.get(key).get("body").add(i);
+					i++;
+				}
 			}
 		}
 
 		//for head words
 		String[] head=parser_.getCopyOfText_head();
-		if(head.length>0)
+		if(head[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(head);
 			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
@@ -60,20 +64,22 @@ public class Indexer {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
 				}	
-				if (invertedIndex.get(key).equals("head")) {
+				if (invertedIndex.get(key).containsKey("head")) {
 					//i need to add counter here
-					int i=invertedIndex.get(key).get("head").intValue();
-					invertedIndex.get(key).remove("head");
+					invertedIndex.get(key).get("head").add(i);
 					i++;
-					invertedIndex.get(key).put("head", i);
 				}	
 				else 
-					invertedIndex.get(key).put("head", 1);
+				{
+					invertedIndex.get(key).put("head", new ArrayList<Integer>() );
+					invertedIndex.get(key).get("head").add(i);
+					i++;
+				}
 			}
 		}
 
 		String[] h1=parser_.getCopyOfText_h1();
-		if(h1.length>0)
+		if(h1[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(h1);
 			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
@@ -81,20 +87,22 @@ public class Indexer {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
 				}	
-				if (invertedIndex.get(key).equals("h1")) {
+				if (invertedIndex.get(key).containsKey("h1")) {
 					//i need to add counter here
-					int i=invertedIndex.get(key).get("h1").intValue();
-					invertedIndex.get(key).remove("h1");
+					invertedIndex.get(key).get("h1").add(i);
 					i++;
-					invertedIndex.get(key).put("h1", i);
 				}	
 				else 
-					invertedIndex.get(key).put("h1", 1);
+				{
+					invertedIndex.get(key).put("h1", new ArrayList<Integer>() );
+					invertedIndex.get(key).get("h1").add(i);
+					i++;
+				}
 			}
 		}
 	
 		String[] h2=parser_.getCopyOfText_h2();
-		if(h2.length>0)
+		if(h2[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(h2);
 			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
@@ -102,20 +110,22 @@ public class Indexer {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
 				}	
-				if (invertedIndex.get(key).equals("h2")) {
+				if (invertedIndex.get(key).containsKey("h2")) {
 					//i need to add counter here
-					int i=invertedIndex.get(key).get("h2").intValue();
-					invertedIndex.get(key).remove("h2");
+					invertedIndex.get(key).get("h2").add(i);
 					i++;
-					invertedIndex.get(key).put("h2", i);
 				}	
 				else 
-					invertedIndex.get(key).put("h2", 1);
+				{
+					invertedIndex.get(key).put("h2", new ArrayList<Integer>() );
+					invertedIndex.get(key).get("h2").add(i);
+					i++;
+				}
 			}
 		}
 
 		String[] h3=parser_.getCopyOfText_h3();
-		if(h3.length>0)
+		if(h3[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(h3);
 			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
@@ -123,21 +133,23 @@ public class Indexer {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
 				}	
-				if (invertedIndex.get(key).equals("h3")) {
+				if (invertedIndex.get(key).containsKey("h3")) {
 					//i need to add counter here
-					int i=invertedIndex.get(key).get("h3").intValue();
-					invertedIndex.get(key).remove("h3");
+					invertedIndex.get(key).get("h3").add(i);
 					i++;
-					invertedIndex.get(key).put("h3", i);
 				}	
 				else 
-					invertedIndex.get(key).put("h3", 1);
+				{
+					invertedIndex.get(key).put("h3", new ArrayList<Integer>() );
+					invertedIndex.get(key).get("h3").add(i);
+					i++;
+				}
 			}
 		}
 
 
 		String[] h4=parser_.getCopyOfText_h4();
-		if(h4.length>0)
+		if(h4[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(h4);
 			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
@@ -145,20 +157,22 @@ public class Indexer {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
 				}	
-				if (invertedIndex.get(key).equals("h4")) {
+				if (invertedIndex.get(key).containsKey("h4")) {
 					//i need to add counter here
-					int i=invertedIndex.get(key).get("h4").intValue();
-					invertedIndex.get(key).remove("h4");
+					invertedIndex.get(key).get("h4").add(i);
 					i++;
-					invertedIndex.get(key).put("h4", i);
 				}	
 				else 
-					invertedIndex.get(key).put("h4", 1);
+				{
+					invertedIndex.get(key).put("h4", new ArrayList<Integer>() );
+					invertedIndex.get(key).get("h4").add(i);
+					i++;
+				}
 			}
 		}
 
 		String[] div=parser_.getCopyOfText_div();
-		if(div.length>0)
+		if(div[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(div);
 			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
@@ -166,20 +180,22 @@ public class Indexer {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
 				}	
-				if (invertedIndex.get(key).equals("div")) {
+				if (invertedIndex.get(key).containsKey("div")) {
 					//i need to add counter here
-					int i=invertedIndex.get(key).get("div").intValue();
-					invertedIndex.get(key).remove("div");
+					invertedIndex.get(key).get("div").add(i);
 					i++;
-					invertedIndex.get(key).put("div", i);
 				}	
 				else 
-					invertedIndex.get(key).put("div", 1);
+				{
+					invertedIndex.get(key).put("div", new ArrayList<Integer>() );
+					invertedIndex.get(key).get("div").add(i);
+					i++;
+				}
 			}
 		}
 
 		String[] footer=parser_.getCopyOfText_footer();
-		if(footer.length>0)
+		if(footer[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(footer);
 			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
@@ -187,45 +203,51 @@ public class Indexer {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
 				}	
-				if (invertedIndex.get(key).equals("footer")) {
+				if (invertedIndex.get(key).containsKey("footer")) {
 					//i need to add counter here
-					int i=invertedIndex.get(key).get("footer").intValue();
-					invertedIndex.get(key).remove("footer");
+					invertedIndex.get(key).get("footer").add(i);
 					i++;
-					invertedIndex.get(key).put("footer", i);
 				}	
 				else 
-					invertedIndex.get(key).put("footer", 1);
+				{
+					invertedIndex.get(key).put("footer", new ArrayList<Integer>() );
+					invertedIndex.get(key).get("footer").add(i);
+					i++;
+				}
 			}
 		}
 
-	// 	String[] title=parser_.getCopyOfText_title();
-	// 	if(title.length>0)
-	// 	{
-	// 		without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(title);
-	// 		without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
-	// 		for (String key : without_stopWords) {
-	// 			if (!invertedIndex.containsKey(key)) {
-	// 				invertedIndex.put(key, new HashMap<>());
-	// 			}	
-	// 			if (invertedIndex.get(key).equals("title")) {
-	// 				//i need to add counter here
-	// 				int i=invertedIndex.get(key).get("title").intValue();
-	// 				invertedIndex.get(key).put("title", i+1);
-	// 			}	
-	// 			else 
-	// 				invertedIndex.get(key).put("title", 1);
-	// 		}
-	// }
+		String[] title=parser_.getCopyOfText_title();
+		if(title[0]!="NULL")
+		{
+			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(title);
+			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
+			for (String key : without_stopWords) {
+				if (!invertedIndex.containsKey(key)) {
+					invertedIndex.put(key, new HashMap<>());
+				}	
+				if (invertedIndex.get(key).containsKey("title")) {
+					//i need to add counter here
+					invertedIndex.get(key).get("title").add(i);
+					i++;
+				}	
+				else 
+				{
+					invertedIndex.get(key).put("title", new ArrayList<Integer>() );
+					invertedIndex.get(key).get("title").add(i);
+					i++;
+				}
+			}
+	}
 
 
 
-		for(Map.Entry<String,HashMap<String,Integer>> entry1 : invertedIndex.entrySet())   //removing unwanted symbols + stopwords is done :D
+		for(Map.Entry<String,HashMap<String,List<Integer>>> entry1 : invertedIndex.entrySet())   //removing unwanted symbols + stopwords is done :D
 		{			
 			// Print Hashmap values
 			System.out.print(entry1.getKey());
-			for (Map.Entry<String,Integer> entry : entry1.getValue().entrySet())
-            	System.out.println(" -> " + entry.getKey() +" N:(" + entry.getValue()+")");
+			for (Map.Entry<String,List<Integer>> entry : entry1.getValue().entrySet())
+            	System.out.println(" -> " + entry.getKey() +" N:(" + entry.getValue().size()+")");
 			System.out.println();
 			//System.out.print(word+" : "+invertedIndex.get("ice").en + "->");						
 		}
