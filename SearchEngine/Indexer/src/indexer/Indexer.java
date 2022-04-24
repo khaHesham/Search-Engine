@@ -22,6 +22,7 @@ public class Indexer {
 		//loop over all urls
 
 		String URL = "https://en.wikipedia.org/wiki/Engineer"; //will be changed with url of each page
+		String stopWords_PATH = "D:\\Computer Engineering\\Advanced Programming Techniques\\Project\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt";
 		// "http://example.com/"
 		Parser_ parser_ = new Parser_(URL);
 		parser_.htmlToTextParse();
@@ -47,7 +48,7 @@ public class Indexer {
 		{
 			
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(myText);	
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
+			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
 			for (String key : without_stopWords) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -71,7 +72,7 @@ public class Indexer {
 		if(head[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(head);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
+			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
 			for (String key : without_stopWords) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -94,7 +95,7 @@ public class Indexer {
 		if(h1[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(h1);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
+			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
 			for (String key : without_stopWords) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -117,7 +118,7 @@ public class Indexer {
 		if(h2[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(h2);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
+			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
 			for (String key : without_stopWords) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -140,7 +141,7 @@ public class Indexer {
 		if(h3[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(h3);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
+			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
 			for (String key : without_stopWords) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -164,7 +165,7 @@ public class Indexer {
 		if(h4[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(h4);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
+			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
 			for (String key : without_stopWords) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -187,7 +188,7 @@ public class Indexer {
 		if(div[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(div);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
+			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
 			for (String key : without_stopWords) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -210,7 +211,7 @@ public class Indexer {
 		if(footer[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(footer);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
+			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
 			for (String key : without_stopWords) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -233,7 +234,7 @@ public class Indexer {
 		if(title[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(title);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, "D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt");
+			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
 			for (String key : without_stopWords) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
