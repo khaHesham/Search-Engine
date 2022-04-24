@@ -259,12 +259,13 @@ public class Parser_ {
 						else break;
 
 						/*
-						the idea of looping again is that assume string is 21/5/2001
+						[*] The idea of looping again is that assume string is 21/5/2001
 						here i want to split the word into three words (21) (5) (2001)
 
-						another example : when i was working on links at wekepidia i noticed words like :(faka-Tonga)
+						[*] Another example : when i was working on links at wekepidia i noticed words like :(faka-Tonga)
 						if i removed the (-) only i will change the meaining (fakaTonga) so i should split it into two words (faka)+(tonga)  i dont really know the meaining of this shit but take it as example :D
 						
+							.khaled.
 						*/
 					}
 					i=index-1;

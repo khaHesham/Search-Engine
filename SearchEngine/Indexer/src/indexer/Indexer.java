@@ -21,13 +21,25 @@ public class Indexer {
 
 		//loop over all urls
 
-		String URL = "https://blog.reedsy.com/repetition-examples/"; //will be changed with url of each page
+		String URL = "https://en.wikipedia.org/wiki/Engineer"; //will be changed with url of each page
 		// "http://example.com/"
 		Parser_ parser_ = new Parser_(URL);
 		parser_.htmlToTextParse();
 		List<String> without_unwanted_Symbols=new ArrayList<String>();
 		List<String> without_stopWords=new ArrayList<String>();
 		int i=0;
+
+		/**
+		[*] I know there is too much repitation but this the only way that comes inside my head for knowing the importance of each
+		word and store its count also relative position in the final document 
+
+		[*] DataBase will contain all the data listed below but in jason file instead of the long Datastructure Hashmap<....Hashmap<...>>
+		i used so dont worry for the size of the code as long as i kept in mind the complixity of the whole process
+
+		[*] it would be nicer if i added all of this in single functions in class Parser_ but i will leave it as it is till now
+
+			.khaled.
+		 */
 
 		//for body
 		String[] myText = parser_.getCopyOfText_body() /*{"test","test","test","test","test"}*/;
@@ -241,18 +253,24 @@ public class Indexer {
 	}
 
 
-
-		for(Map.Entry<String,HashMap<String,List<Integer>>> entry1 : invertedIndex.entrySet())   //removing unwanted symbols + stopwords is done :D
+		int num_words=0;
+		for(Map.Entry<String,HashMap<String,List<Integer>>> entry1 : invertedIndex.entrySet())   //removing unwanted symbols + stopwords is done + inverted index :D
 		{			
 			// Print Hashmap values
 			System.out.print(entry1.getKey());
+			int total_count=0;
 			for (Map.Entry<String,List<Integer>> entry : entry1.getValue().entrySet())
-            	System.out.println(" -> " + entry.getKey() +" N:(" + entry.getValue().size()+")");
+			{
+            	System.out.print(" -> " + entry.getKey() +" N: (" + entry.getValue().size()+") ");
+				total_count+=entry.getValue().size();
+			}
+			System.out.print( " totalCount: "+total_count);
 			System.out.println();
-			//System.out.print(word+" : "+invertedIndex.get("ice").en + "->");						
-		}
+			System.out.println();
+			num_words+=total_count;
 
-		
+		}	
+		System.out.println( " total words count: "+num_words);
 	}
 
 }
