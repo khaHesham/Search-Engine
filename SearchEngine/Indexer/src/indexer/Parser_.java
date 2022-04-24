@@ -157,58 +157,6 @@ public class Parser_ {
 
 
 	
-	public void extraxtMetadata(String path) throws IOException
-	{
-		File file=new File("D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\test.txt");//send path here
-		File tempFile = new File("D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\temptest.txt");// temp file
-		File metadata = new File("D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\metadata.txt");// temp file
-		
-		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-			try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
-				if(file.exists()){
-				        
-				        
-				        Scanner scanner=new Scanner(file);
-				        int count=0;
-				        String word;
-				        
-				        while((word = reader.readLine()) != null) {
-
-				            if(word.length()<=2 || word.equals("and") || word.equals("And") ||word.equals("for") || word.equals("For")) continue;
-
-				            writer.write(word);
-				            count++;
-				            writer.newLine();
-				        }
-				        try (BufferedWriter meta = new BufferedWriter(new FileWriter(metadata))) {
-							meta.write("Name: "+ tempFile.getName());
-							 meta.newLine();
-							 meta.write("Path: "+ tempFile.getAbsolutePath());
-							 meta.newLine();
-							 meta.write("Size: "+ file.length() + " bytes");
-							 meta.newLine();
-							 meta.write("Writeable: "+ tempFile.canWrite());
-							 meta.newLine();
-							 meta.write("Readable: "+ tempFile.canRead());
-							 meta.newLine();
-							 meta.write("Number of words: "+ count);  
-							 meta.newLine();
-							String content = doc.location();
-							meta.write(content);
-							meta.newLine();
-						}			        
-				    }else{
-				        System.out.println("The File does not exist");
-				    }
-			}
-			
-			
-			
-		}
-		
-		
-		 		 
-	}
 	
 
 
