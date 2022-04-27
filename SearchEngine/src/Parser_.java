@@ -432,6 +432,7 @@ public class Parser_ {
 			else if (ends("ies")) setto("i");
 			else if (b[k - 1] != 's') k--;
 		}
+
 		if (ends("eed")) {
 			if (m() > 0) k--;
 		} else if ((ends("ed") || ends("ing")) && vowelinstem()) {
