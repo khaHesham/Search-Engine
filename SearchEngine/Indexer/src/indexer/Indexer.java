@@ -13,9 +13,7 @@ import java.util.Map;
 
 import org.apache.commons.math3.util.Pair;
 
-public class Indexer {	
-
-	
+public class Indexer {
 	public static void main(String[] args) throws IOException {
 		 HashMap<String ,HashMap<String,List<Integer>>> invertedIndex=new HashMap<>();
 
@@ -68,7 +66,7 @@ public class Indexer {
 		}
 
 		//for head words
-		String[] head=parser_.getCopyOfText_head();
+		String[] head = parser_.getCopyOfText_head();
 		if(head[0]!="NULL")
 		{
 			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(head);
