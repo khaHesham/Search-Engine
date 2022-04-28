@@ -149,7 +149,7 @@ public class Parser_ {
 	}
 
 
-	public List<String> RemoveStopWords(List<String> words, String stop_words_file_path) throws FileNotFoundException, IOException {
+	private List<String> RemoveStopWords(List<String> words, String stop_words_file_path) throws FileNotFoundException, IOException {
 		HashSet<String> stops = new HashSet<>();  //initilalizing set
 		File file = new File(stop_words_file_path);//send path here  will be changed offcourse D:\\GITHUB\\Search-Engine\\SearchEngine\\Indexer\\src\\indexer\\stopwords.txt
 		BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -171,7 +171,7 @@ public class Parser_ {
 	}
 
 
-	public List<String> Removing_Unwanted_Symbols(String[] withSymbols) {
+	private List<String> Removing_Unwanted_Symbols(String[] withSymbols) {
 		List<String> list = new ArrayList<String>();
 
 		StringBuilder newWord = new StringBuilder();
@@ -208,7 +208,7 @@ public class Parser_ {
 		return list;
 	}
 
-	public String[] getStemmedWords(List<String> without_stemming) {
+	private String[] getStemmedWords(List<String> without_stemming) {
 		String[] stemmedWords = new String[without_stemming.size()];
 		PorterStemmer stemmer = new PorterStemmer();
 
@@ -219,5 +219,14 @@ public class Parser_ {
 			stemmedWords[i] = stemmo;
 		}
 		return stemmedWords;
+	}
+
+
+	public String[] processData(String [] data) throws IOException {
+		List<String> without_unwanted_symbols=Removing_Unwanted_Symbols(data);
+		List<String> without_stop_words=RemoveStopWords(without_unwanted_symbols,"C:\\Users\\khaled\\Desktop\\indexo\\src\\stopwords.txt");
+		String[] final_stage=getStemmedWords(without_stop_words);
+
+		return final_stage;
 	}
 }

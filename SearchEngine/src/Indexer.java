@@ -39,9 +39,7 @@ public class Indexer {
 		if(myText[0]!="NULL")
 		{
 
-			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(myText);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
-			String []final_words=parser_.getStemmedWords(without_stopWords);
+			String []final_words=parser_.processData(myText);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -64,9 +62,7 @@ public class Indexer {
 		String[] head=parser_.getCopyOfText_head();
 		if(head[0]!="NULL")
 		{
-			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(head);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
-			String []final_words=parser_.getStemmedWords(without_stopWords);
+			String []final_words=parser_.processData(head);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -88,9 +84,8 @@ public class Indexer {
 		String[] h1=parser_.getCopyOfText_h1();
 		if(h1[0]!="NULL")
 		{
-			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(h1);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
-			String []final_words=parser_.getStemmedWords(without_stopWords);
+			String []final_words=parser_.processData(h1);
+
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -112,9 +107,7 @@ public class Indexer {
 		String[] h2=parser_.getCopyOfText_h2();
 		if(h2[0]!="NULL")
 		{
-			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(h2);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
-			String []final_words=parser_.getStemmedWords(without_stopWords);
+			String []final_words=parser_.processData(h2);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -136,9 +129,7 @@ public class Indexer {
 		String[] h3=parser_.getCopyOfText_h3();
 		if(h3[0]!="NULL")
 		{
-			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(h3);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
-			String []final_words=parser_.getStemmedWords(without_stopWords);
+			String []final_words=parser_.processData(h3);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -161,9 +152,7 @@ public class Indexer {
 		String[] h4=parser_.getCopyOfText_h4();
 		if(h4[0]!="NULL")
 		{
-			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(h4);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
-			String []final_words=parser_.getStemmedWords(without_stopWords);
+			String []final_words=parser_.processData(h4);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -185,9 +174,7 @@ public class Indexer {
 		String[] div=parser_.getCopyOfText_div();
 		if(div[0]!="NULL")
 		{
-			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(div);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
-			String []final_words=parser_.getStemmedWords(without_stopWords);
+			String []final_words=parser_.processData(div);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -209,9 +196,7 @@ public class Indexer {
 		String[] footer=parser_.getCopyOfText_footer();
 		if(footer[0]!="NULL")
 		{
-			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(footer);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
-			String []final_words=parser_.getStemmedWords(without_stopWords);
+			String []final_words=parser_.processData(footer);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -233,9 +218,7 @@ public class Indexer {
 		String[] title=parser_.getCopyOfText_title();
 		if(title[0]!="NULL")
 		{
-			without_unwanted_Symbols=parser_.Removing_Unwanted_Symbols(title);
-			without_stopWords=parser_.RemoveStopWords(without_unwanted_Symbols, stopWords_PATH);
-			String []final_words=parser_.getStemmedWords(without_stopWords);
+			String []final_words=parser_.processData(title);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
