@@ -42,7 +42,6 @@ public class Parser_ {
 		////////////////////
 		///////////////////
 	}
-
 	public String[] getCopyOfText_head() {   //head
 		if (this.isParsed == false || this.head == null) {
 			String[] message = {"NULL"};
@@ -223,10 +222,43 @@ public class Parser_ {
 
 
 	public String[] processData(String [] data) throws IOException {
+		List<String> without_stop_words=new ArrayList<String>();
+		String[] final_stage=null;
+
 		List<String> without_unwanted_symbols=Removing_Unwanted_Symbols(data);
-		List<String> without_stop_words=RemoveStopWords(without_unwanted_symbols,"C:\\Users\\khaled\\Desktop\\indexo\\src\\stopwords.txt");
-		String[] final_stage=getStemmedWords(without_stop_words);
+		if(without_unwanted_symbols.size()!=0) {
+			without_stop_words = RemoveStopWords(without_unwanted_symbols, "C:\\Users\\khaled\\Desktop\\indexo\\src\\stopwords.txt");
+			if(without_stop_words.size()!=0)
+				final_stage = getStemmedWords(without_stop_words);
+		}
 
 		return final_stage;
 	}
+
+	/*
+	*
+	*
+	* 		QUERY PROCESSOR
+	*
+	*
+	*/
+
+	public String[] getQuery(String query_file_path) throws IOException {
+		File file = new File(query_file_path);
+		BufferedReader reader = new BufferedReader(new FileReader(file));
+		String word_;
+		String[] strArray = null;
+
+		while ((word_ = reader.readLine()) != null) {
+			strArray=word_.split(" ");
+		}
+		reader.close();
+
+		PrintWriter writer = new PrintWriter(file);
+		writer.print("");
+		writer.close();
+		return processData(strArray);
+	}
+
+
 }

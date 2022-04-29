@@ -1,15 +1,20 @@
 
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Indexer {	
+public class Indexer {
+
+	public Indexer() throws IOException {
+	}
 
 	public static void main(String[] args) throws IOException {
-		 HashMap<String ,HashMap<String,List<Integer>>> invertedIndex=new HashMap<>();
+		HashMap<String, HashMap<String, List<Integer>>> invertedIndex = new HashMap<>();
+
 
 		//loop over all urls
 
@@ -18,20 +23,21 @@ public class Indexer {
 		// "http://example.com/"
 		Parser_ parser_ = new Parser_(URL);
 		parser_.htmlToTextParse();
-		List<String> without_unwanted_Symbols=new ArrayList<String>();
-		List<String> without_stopWords=new ArrayList<String>();
-		int i=0;
+		List<String> without_unwanted_Symbols = new ArrayList<String>();
+		List<String> without_stopWords = new ArrayList<String>();
+		int i = 0;
+
 
 		/**
-		[*] I know there is too much repitation but this the only way that comes inside my head for knowing the importance of each
-		word and store its count also relative position in the final document
+		 [*] I know there is too much repitation but this the only way that comes inside my head for knowing the importance of each
+		 word and store its count also relative position in the final document
 
-		[*] DataBase will contain all the data listed below but in jason file instead of the long Datastructure Hashmap<....Hashmap<...>>
-		i used so dont worry for the size of the code as long as i kept in mind the complixity of the whole process
+		 [*] DataBase will contain all the data listed below but in jason file instead of the long Datastructure Hashmap<....Hashmap<...>>
+		 i used so dont worry for the size of the code as long as i kept in mind the complixity of the whole process
 
-		[*] it would be nicer if i added all of this in single functions in class Parser_ but i will leave it as it is till now
+		 [*] it would be nicer if i added all of this in single functions in class Parser_ but i will leave it as it is till now
 
-			.khaled.
+		 .khaled.
 		 */
 
 		//for body
@@ -238,6 +244,13 @@ public class Indexer {
 	}
 
 
+
+//		String[] q=parser_.getQuery("D:\\GITHUB\\Search-Engine\\query.txt");
+//		for (String _word:q)
+//		{
+//			System.out.println(_word);
+//		}
+
 		int num_words=0;
 		for(Map.Entry<String,HashMap<String,List<Integer>>> entry1 : invertedIndex.entrySet())   //removing unwanted symbols + stopwords is done + inverted index :D
 		{
@@ -257,5 +270,6 @@ public class Indexer {
 		}
 		System.out.println( " total words count: "+num_words);
 	}
+
 
 }
