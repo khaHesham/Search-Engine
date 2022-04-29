@@ -41,11 +41,10 @@ public class Indexer {
 		 */
 
 		//for body
-		String[] myText =parser_.getCopyOfText_body();
-		if(myText[0]!="NULL")
-		{
+		String[] myText = parser_.getCopyOfText_body();
+		if (myText[0] != "NULL") {
 
-			String []final_words=parser_.processData(myText);
+			String[] final_words = parser_.processData(myText);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -54,9 +53,7 @@ public class Indexer {
 					//i need to add counter here
 					invertedIndex.get(key).get("body").add(i);
 					i++;
-				}
-				else
-				{
+				} else {
 					invertedIndex.get(key).put("body", new ArrayList<Integer>());
 					invertedIndex.get(key).get("body").add(i);
 					i++;
@@ -65,10 +62,9 @@ public class Indexer {
 		}
 
 		//for head words
-		String[] head=parser_.getCopyOfText_head();
-		if(head[0]!="NULL")
-		{
-			String []final_words=parser_.processData(head);
+		String[] head = parser_.getCopyOfText_head();
+		if (head[0] != "NULL") {
+			String[] final_words = parser_.processData(head);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -77,20 +73,17 @@ public class Indexer {
 					//i need to add counter here
 					invertedIndex.get(key).get("head").add(i);
 					i++;
-				}
-				else
-				{
-					invertedIndex.get(key).put("head", new ArrayList<Integer>() );
+				} else {
+					invertedIndex.get(key).put("head", new ArrayList<Integer>());
 					invertedIndex.get(key).get("head").add(i);
 					i++;
 				}
 			}
 		}
 
-		String[] h1=parser_.getCopyOfText_h1();
-		if(h1[0]!="NULL")
-		{
-			String []final_words=parser_.processData(h1);
+		String[] h1 = parser_.getCopyOfText_h1();
+		if (h1[0] != "NULL") {
+			String[] final_words = parser_.processData(h1);
 
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
@@ -100,20 +93,17 @@ public class Indexer {
 					//i need to add counter here
 					invertedIndex.get(key).get("h1").add(i);
 					i++;
-				}
-				else
-				{
-					invertedIndex.get(key).put("h1", new ArrayList<Integer>() );
+				} else {
+					invertedIndex.get(key).put("h1", new ArrayList<Integer>());
 					invertedIndex.get(key).get("h1").add(i);
 					i++;
 				}
 			}
 		}
 
-		String[] h2=parser_.getCopyOfText_h2();
-		if(h2[0]!="NULL")
-		{
-			String []final_words=parser_.processData(h2);
+		String[] h2 = parser_.getCopyOfText_h2();
+		if (h2[0] != "NULL") {
+			String[] final_words = parser_.processData(h2);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -122,20 +112,17 @@ public class Indexer {
 					//i need to add counter here
 					invertedIndex.get(key).get("h2").add(i);
 					i++;
-				}
-				else
-				{
-					invertedIndex.get(key).put("h2", new ArrayList<Integer>() );
+				} else {
+					invertedIndex.get(key).put("h2", new ArrayList<Integer>());
 					invertedIndex.get(key).get("h2").add(i);
 					i++;
 				}
 			}
 		}
 
-		String[] h3=parser_.getCopyOfText_h3();
-		if(h3[0]!="NULL")
-		{
-			String []final_words=parser_.processData(h3);
+		String[] h3 = parser_.getCopyOfText_h3();
+		if (h3[0] != "NULL") {
+			String[] final_words = parser_.processData(h3);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -144,10 +131,8 @@ public class Indexer {
 					//i need to add counter here
 					invertedIndex.get(key).get("h3").add(i);
 					i++;
-				}
-				else
-				{
-					invertedIndex.get(key).put("h3", new ArrayList<Integer>() );
+				} else {
+					invertedIndex.get(key).put("h3", new ArrayList<Integer>());
 					invertedIndex.get(key).get("h3").add(i);
 					i++;
 				}
@@ -155,10 +140,9 @@ public class Indexer {
 		}
 
 
-		String[] h4=parser_.getCopyOfText_h4();
-		if(h4[0]!="NULL")
-		{
-			String []final_words=parser_.processData(h4);
+		String[] h4 = parser_.getCopyOfText_h4();
+		if (h4[0] != "NULL") {
+			String[] final_words = parser_.processData(h4);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -167,20 +151,17 @@ public class Indexer {
 					//i need to add counter here
 					invertedIndex.get(key).get("h4").add(i);
 					i++;
-				}
-				else
-				{
-					invertedIndex.get(key).put("h4", new ArrayList<Integer>() );
+				} else {
+					invertedIndex.get(key).put("h4", new ArrayList<Integer>());
 					invertedIndex.get(key).get("h4").add(i);
 					i++;
 				}
 			}
 		}
 
-		String[] div=parser_.getCopyOfText_div();
-		if(div[0]!="NULL")
-		{
-			String []final_words=parser_.processData(div);
+		String[] div = parser_.getCopyOfText_div();
+		if (div[0] != "NULL") {
+			String[] final_words = parser_.processData(div);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -189,20 +170,17 @@ public class Indexer {
 					//i need to add counter here
 					invertedIndex.get(key).get("div").add(i);
 					i++;
-				}
-				else
-				{
-					invertedIndex.get(key).put("div", new ArrayList<Integer>() );
+				} else {
+					invertedIndex.get(key).put("div", new ArrayList<Integer>());
 					invertedIndex.get(key).get("div").add(i);
 					i++;
 				}
 			}
 		}
 
-		String[] footer=parser_.getCopyOfText_footer();
-		if(footer[0]!="NULL")
-		{
-			String []final_words=parser_.processData(footer);
+		String[] footer = parser_.getCopyOfText_footer();
+		if (footer[0] != "NULL") {
+			String[] final_words = parser_.processData(footer);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -211,20 +189,17 @@ public class Indexer {
 					//i need to add counter here
 					invertedIndex.get(key).get("footer").add(i);
 					i++;
-				}
-				else
-				{
-					invertedIndex.get(key).put("footer", new ArrayList<Integer>() );
+				} else {
+					invertedIndex.get(key).put("footer", new ArrayList<Integer>());
 					invertedIndex.get(key).get("footer").add(i);
 					i++;
 				}
 			}
 		}
 
-		String[] title=parser_.getCopyOfText_title();
-		if(title[0]!="NULL")
-		{
-			String []final_words=parser_.processData(title);
+		String[] title = parser_.getCopyOfText_title();
+		if (title[0] != "NULL") {
+			String[] final_words = parser_.processData(title);
 			for (String key : final_words) {
 				if (!invertedIndex.containsKey(key)) {
 					invertedIndex.put(key, new HashMap<>());
@@ -233,23 +208,16 @@ public class Indexer {
 					//i need to add counter here
 					invertedIndex.get(key).get("title").add(i);
 					i++;
-				}
-				else
-				{
-					invertedIndex.get(key).put("title", new ArrayList<Integer>() );
+				} else {
+					invertedIndex.get(key).put("title", new ArrayList<Integer>());
 					invertedIndex.get(key).get("title").add(i);
 					i++;
 				}
 			}
-	}
+		}
 
 
 
-//		String[] q=parser_.getQuery("D:\\GITHUB\\Search-Engine\\query.txt");
-//		for (String _word:q)
-//		{
-//			System.out.println(_word);
-//		}
 
 		int num_words=0;
 		for(Map.Entry<String,HashMap<String,List<Integer>>> entry1 : invertedIndex.entrySet())   //removing unwanted symbols + stopwords is done + inverted index :D
@@ -269,6 +237,29 @@ public class Indexer {
 
 		}
 		System.out.println( " total words count: "+num_words);
+
+
+
+
+		String[] q = parser_.getQuery("D:\\GITHUB\\Search-Engine\\query.txt");
+		for (String _word : q) {
+			if(invertedIndex.containsKey(_word))
+				for(Map.Entry<String,List<Integer>> entry:invertedIndex.get(_word).entrySet())
+				{
+					System.out.print(_word+ " -> " + entry.getKey() +" N: (" + entry.getValue().size()+") ");
+					for (int j=0;j<entry.getValue().size();j++)
+						System.out.print(" "+entry.getValue().get(j));
+					System.out.println();
+				}
+			System.out.println();
+		}
+
+
+
+
+
+
+
 	}
 
 
