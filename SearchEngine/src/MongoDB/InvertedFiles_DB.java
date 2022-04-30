@@ -5,6 +5,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 
 import java.util.*;
 
@@ -15,7 +16,7 @@ public class InvertedFiles_DB {
 	public MongoDatabase database;
 	public MongoCollection<Document> collection;
 	
-	InvertedFiles_DB(String domain, int port, String db_name, String collection_name) {
+	public InvertedFiles_DB(String domain, int port, String db_name, String collection_name) {
 		mongoClient = MongoClients.create("mongodb://" + domain +":" + String.valueOf(port));
 		database = mongoClient.getDatabase(db_name);
 		collection = database.getCollection(collection_name);
@@ -44,7 +45,7 @@ public class InvertedFiles_DB {
 		try {
 			Document temp = collection.find(Filters.eq("word", data.get("word"))).first();
 			if (temp.getString("word").equals(doc.get("word")))
-				System.out.println("Word '" + doc.get("word") + "' is already exist, you can update it but not duplicate it!");
+				return;//System.out.println("Word '" + doc.get("word") + "' is already exist, you can update it but not duplicate it!");
 		} catch (NullPointerException e) {
 			collection.insertOne(doc);
 		}
@@ -83,4 +84,12 @@ public class InvertedFiles_DB {
 		if (data.get("_id") == null)
 			System.out.println("{\n'word': " + data.get("word") + ",\n'locations': " + data.get("locations") + "\n}");
 	}
+
+
+	public void Update(String word,String locations) {
+		
+		collection.updateOne(Filters.eq("word",word), Updates.set("locations", locations));
+	}
+
+
 }

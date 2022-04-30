@@ -16,6 +16,9 @@ public class DBTest {
 		
 		InvertedFiles_DB invertedfiles_db = new InvertedFiles_DB("localhost", 27017, "SearchEngine", "InvertedFiles");
 		invertedfiles_db.Insert(invertedfiles_db.DataWrapper("computer", "(5,187,1) (141,54523,3)"));
+		invertedfiles_db.Insert(invertedfiles_db.DataWrapper("engineering", "(4,187,10) (141,54523,3)"));
+		invertedfiles_db.Insert(invertedfiles_db.DataWrapper("data", "(99,187,1) (41,54523,3)"));
+		invertedfiles_db.Insert(invertedfiles_db.DataWrapper("test", "(5,7,1) (11,54523,3)"));
 		invertedfiles_db.printNumberOfDocuments();
 		invertedfiles_db.printJSON(invertedfiles_db.find("engineering"));
 	}
