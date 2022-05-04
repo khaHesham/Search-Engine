@@ -283,11 +283,17 @@ public class Indexer {
 		// invertedIndex.clear();
 		//}
 
-		Map<String, String> data = invertedfiles_db.find("engin");
+		Map<String, String> data = invertedfiles_db.find("temperatur");
 		String[] indecies = data.get("locations").split(" ");
 
 		for (String s : indecies)
+		{
 			System.out.println(s);
+			
+
+		}
+
+			
 
 	}
 }

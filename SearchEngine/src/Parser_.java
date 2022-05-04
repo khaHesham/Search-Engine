@@ -170,7 +170,7 @@ public class Parser_ {
 		return list;
 	}
 
-	private List<String> Removing_Unwanted_Symbols(String[] withSymbols) {
+	public List<String> Removing_Unwanted_Symbols(String[] withSymbols) {
 		List<String> list = new ArrayList<String>();
 
 		StringBuilder newWord = new StringBuilder();
@@ -260,6 +260,21 @@ public class Parser_ {
 		writer.print("");
 		writer.close();
 		return processData(strArray);
+	}
+
+	public int[] String2Int(String index)
+	{
+		int[]info=new int[3];
+
+		String []indecies=index.split(" ");
+		List<String> stringinfo=Removing_Unwanted_Symbols(indecies);
+		int i=0;
+		for(String st:stringinfo)
+		{
+			info[i]=Integer.parseInt(st);
+			i++;
+		}
+		return info;
 	}
 
 }

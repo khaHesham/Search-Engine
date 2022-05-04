@@ -1,51 +1,61 @@
-//
-//import java.io.*;
-//import java.net.HttpURLConnection;
-//import java.net.MalformedURLException;
-//import java.net.URL;
-//import java.nio.charset.StandardCharsets;
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//
-//public class QueryProcessor{
-//
-//    Parser_ parser ;
-//    List<String>Query;
-//
-//    public QueryProcessor()
-//    {
-////        parser = new Parser_();
-////        Query=new ArrayList<String>();
-//    }
-//    public void getQuery(String query_file_path) throws IOException {
-//        File file = new File(query_file_path);
-//        BufferedReader reader = new BufferedReader(new FileReader(file));
-//        String word_;
-//        while ((word_ = reader.readLine()) != null) {
-//            Query.add(word_);
-//        }
-//        reader.close();
-//
-//        PrintWriter writer = new PrintWriter(file);
-//        writer.print("");
-//        writer.close();
-//
-//    }
-//
-//    public String [] processInputQuery() throws IOException {
-//        String [] query=new String[Query.size()];
-//
-//        if(Query.size()!=0) {
-//            query = parser.processData((String[]) Query.toArray());
-//        }
-//        return query;
-//    }
-//
-//
-//}
-////public class  {
-////
-////
-////
-////}
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import MongoDB.URLs_DB;
+import MongoDB.InvertedFiles_DB;
+
+public class QueryProcessor {
+
+    Parser_ parser;
+    String Query; // normal string for now
+
+    public QueryProcessor(String Q) {
+        parser = new Parser_("");
+        Query = Q;
+    }
+
+    public String[] processInputQuery() throws IOException {
+        String[] query = Query.split(" ");
+
+        if (query.length != 0) {
+            query = parser.processData(query);
+        }
+        return query;
+    }
+
+    public String[] Ranking() throws IOException {
+        String[] indecies = null;
+        String[] processed_input = processInputQuery();
+
+        Double TF = 0.0;
+        Double IDF = 0.0;
+        List<Double> TF_IDF = new ArrayList<Double>();
+
+        InvertedFiles_DB invertedfiles_db = new InvertedFiles_DB("localhost", 27017, "SearchEngine", "InvertedFiles");
+        for (String s : processed_input) {
+            Map<String, String> data = invertedfiles_db.find(s);
+            String index = data.get("locations");
+            if (index != null) {
+                indecies = index.split(" ");
+                for (String s2 : indecies) {
+                    System.out.println(s + " " + s2);
+
+
+
+                }
+
+            }
+        }
+        return processed_input;
+    }
+
+    public static void main(String[] args) throws IOException {
+        QueryProcessor q = new QueryProcessor("temperature is amazing today");
+        q.Ranking();
+
+    }
+
+}
