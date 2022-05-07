@@ -1,26 +1,11 @@
 package MongoDB;
-
 import MongoDB.URLs_DB;
+import java.util.List;
 import MongoDB.InvertedFiles_DB;
 
 public class DBTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		/*
-		URLs_DB urls_db = new URLs_DB("localhost", 27017, "SearchEngine", "URLs");
-		urls_db.Insert(urls_db.DataWrapper("1", "https://en.wikipedia.org/wiki/Engineer"));
-		urls_db.printNumberOfDocuments();
-		urls_db.printJSON(urls_db.findByID("1"));
-		*/
-		
-		InvertedFiles_DB invertedfiles_db = new InvertedFiles_DB("localhost", 27017, "SearchEngine", "InvertedFiles");
-		invertedfiles_db.Insert(invertedfiles_db.DataWrapper("computer", "(5,187,1) (141,54523,3)"));
-		invertedfiles_db.Insert(invertedfiles_db.DataWrapper("engineering", "(4,187,10) (141,54523,3)"));
-		invertedfiles_db.Insert(invertedfiles_db.DataWrapper("data", "(99,187,1) (41,54523,3)"));
-		invertedfiles_db.Insert(invertedfiles_db.DataWrapper("test", "(5,7,1) (11,54523,3)"));
-		invertedfiles_db.printNumberOfDocuments();
-		invertedfiles_db.printJSON(invertedfiles_db.find("engineering"));
+		// for Testing the DB
 	}
-
 }

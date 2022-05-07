@@ -10,9 +10,22 @@
 5-search the given indicies in the DB to retrieve the urls
 6-Send the resulted urls after sorting to te dynamic page to view them
 
+prio (2->10):   10: head
+                9:  h1
+                8:  h2
+                7:  h3
+                6:  h4
+                5:  title
+                4:  div
+                3:  footer   
+                2:  body
 
-TF= (No. of occourance of word in each type/total words in doc)*(10/periority)   tf(data)=(3/1000)*(10/10) ->head  + (100/1000)*(10/2) + ....
-TF << is better than large tfs
+                     
+TF=(No. of occourance of word in each type/total words in doc)*(10/priority)   tf(data)=(3/1000)*(10/10) -> head  + (data)(100/1000)*(10/2)-> body + ....
+lower TFs is better than larger TFs
+
+idf=
+
 
 IDF=(5000/N doc containing word)
 
@@ -20,7 +33,27 @@ doc1=tf1*idf1 +tf2*idf2 +.....
 .
 .
 .
+.
 docn
 
 
 sort them descending greater value means better result
+
+
+
+
+understand crawling processing
+
+
+       head-> ["1","2"]
+       body-> ["rwiriowet","dfjsfkls"]
+       footer-> ["jsfjk","dfjsfkls"]
+
+
+
+ [0] : 10  : 2
+  0  : 12  : 10
+  0  : 13  : 3
+
+
+  0   35  
