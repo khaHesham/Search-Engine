@@ -21,19 +21,7 @@ public class InvertedFiles_DB {
 	public MongoClient mongoClient;
 	public MongoDatabase database;
 	public MongoCollection<Document> collection;
-    // Note: for online Database
-	// public InvertedFiles_DB(String host, String db_name, String collection_name)
-	// {
-	// mongoClient = MongoClients.create(host);
-	// database = mongoClient.getDatabase(db_name);
-	// collection = database.getCollection(collection_name);
-	// }
-
-	// public void DBSetup(String host, String db_name, String collection_name) {
-	// mongoClient = MongoClients.create(host);
-	// database = mongoClient.getDatabase(db_name);
-	// collection = database.getCollection(collection_name);
-	// }
+   
 	public InvertedFiles_DB(String domain, int port, String db_name, String collection_name) {
 		mongoClient = MongoClients.create("mongodb://" + domain + ":" + String.valueOf(port));
 		database = mongoClient.getDatabase(db_name);
@@ -51,9 +39,11 @@ public class InvertedFiles_DB {
 		Document doc = new Document("word", word);
 		List<Integer> locationsList = new ArrayList<>();
 		List<Double> Tfs = new ArrayList<Double>();
+		List<List<Integer>> frequancies = new ArrayList<List<Integer>>();
 
 		doc.append("locations", locationsList);
 		doc.append("TF", Tfs);
+		doc.append("frequancies", frequancies);
 
 		try {
 			Document temp = collection.find(Filters.eq("word", word)).first();
@@ -85,8 +75,8 @@ public class InvertedFiles_DB {
 		}
 	}
 
-	public long getNumberOfDocuments() {
-		return collection.countDocuments();
+	public int getNumberOfDocuments() {
+		return (int)collection.countDocuments();
 	}
 
 	public void printNumberOfDocuments() {
@@ -101,5 +91,47 @@ public class InvertedFiles_DB {
 		else
 			return null;
 	}
+
+
+	public void Update_freq(String word, List<Integer> freq) {
+		Bson filter = Filters.eq("word", word);
+		try {
+			collection.updateOne(filter, Updates.push("frequancies", freq));
+		} catch (MongoException me) {
+			System.err.println("Unable to update due to an error: " + me);
+		}
+	}
+
+
+	public void insert_pages(int index,String link,String description,String title, double rank)
+	{
+		Document doc = new Document("index", index);
+		doc.append("link", link);
+		doc.append("description", description);
+		doc.append("title", title);
+		doc.append("rank", rank);
+		
+
+		try {
+			Document temp = collection.find(Filters.eq("index", index)).first();
+			if (temp.getString("index").equals(index))
+				return;
+		} catch (NullPointerException e) {
+			collection.insertOne(doc);
+		}
+
+	}
+
+
+// String:link   int:index    String:description    String:title    double:rank
+
+public String Retrievepages(int index) {
+	Document doc = collection.find(Filters.eq("index", index)).first();
+
+	if (doc != null)
+		return doc.toJson();
+	else
+		return null;
+}
 
 }

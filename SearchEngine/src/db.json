@@ -3,3 +3,49 @@
     "locations":[0,1,4,2],
     "TF":[23.1,0.234,6.8,1.3]
 }
+
+
+
+{
+    "word":"car",
+    "locations":[0,1,4,2],
+    "frequancies":[[1,2,6,80], [3,7,3], [0,3,1,7], [9,5,21,14]]
+}
+
+ 0     1       2    3
+"car toyota engine city"   car [1,2,3] > toyota [1,2,5] > engine [1,7,8]  ----> [1] 
+
+car    --> location 0 index 1 9 6 20
+
+toyota --> location 0 index 2 29 80 49
+
+engine --> location 6 index 53 564 763 473 46
+
+
+missing-> "toyota" , 
+
+"car toyota" location 0  index  0
+
+
+0 -> 2.5*(found)(n-i)
+1 -> 4*i
+
+
+"
+    car Toyota engine is awsome and good friend   
+    bike toyota engine is not bad
+"
+
+
+
+
+PesudoCode Phrase_searching()
+{
+    get the query-->query;
+
+
+
+}
+
+
+

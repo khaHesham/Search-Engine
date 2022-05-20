@@ -38,90 +38,44 @@ public class Parser_ {
 	public Parser_(String url) {
 		this.URL = url;
 		this.isParsed = false;
-		////////////////////
-		///////////////////
 	}
 
-	public String[] getCopyOfText_head() { // head
-		if (this.isParsed == false || this.head == null) {
-			String[] message = { "NULL" };
-			return message;
+	public String[] getCopyOfText(String imp) { // head
+		if (this.isParsed == false) {
+			return null;
+		}
+
+		switch (imp) {
+			case "head":
+				return this.head;
+
+			case "h1":
+				return this.h1;
+
+			case "h2":
+				return this.h2;
+
+			case "h3":
+				return this.h3;
+
+			case "h4":
+				return this.h4;
+
+			case "body":
+				return this.body;
+
+			case "footer":
+				return this.footer;
+
+			case "div":
+				return this.div;
+
+			case "title":
+				return this.title;
+
 		}
 
 		return this.head;
-	}
-
-	public String[] getCopyOfText_h1() { // h1
-		if (this.isParsed == false || this.h1 == null) {
-			String[] message = { "NULL" };
-			return message;
-		}
-
-		return this.h1;
-
-	}
-
-	public String[] getCopyOfText_h2() { // h2
-		if (this.isParsed == false || this.h2 == null) {
-			String[] message = { "NULL" };
-			return message;
-		}
-
-		return this.h2;
-	}
-
-	public String[] getCopyOfText_h3() { // h3
-		if (this.isParsed == false || this.h3 == null) {
-			String[] message = { "NULL" };
-			return message;
-		}
-
-		return this.h3;
-	}
-
-	public String[] getCopyOfText_h4() { // h4
-		if (this.isParsed == false || this.h4 == null) {
-			String[] message = { "NULL" };
-			return message;
-		}
-
-		return this.h4;
-	}
-
-	public String[] getCopyOfText_body() { // body
-		if (this.isParsed == false || this.body == null) {
-			String[] message = { "NULL" };
-			return message;
-		}
-
-		return this.body;
-	}
-
-	public String[] getCopyOfText_footer() { // footer
-		if (this.isParsed == false || this.footer == null) {
-			String[] message = { "NULL" };
-			return message;
-		}
-
-		return this.footer;
-	}
-
-	public String[] getCopyOfText_div() { // div
-		if (this.isParsed == false || this.div == null) {
-			String[] message = { "NULL" };
-			return message;
-		}
-
-		return this.div;
-	}
-
-	public String[] getCopyOfText_title() { // title
-		if (this.isParsed == false || this.title == null) {
-			String[] message = { "NULL" };
-			return message;
-		}
-
-		return this.title;
 	}
 
 	public void setURL(String url) {
@@ -188,7 +142,6 @@ public class Parser_ {
 							x2 = word.charAt(index);
 						else
 							break;
-
 						/*
 						 * [*] The idea of looping again is that assume string is 21/5/2001
 						 * here i want to split the word into three words (21) (5) (2001)
@@ -224,57 +177,18 @@ public class Parser_ {
 		return stemmedWords;
 	}
 
-	public String[] processData(String [] data) throws IOException {
-		List<String> without_stop_words=new ArrayList<String>();
-		String[] final_stage=null;
+	public String[] processData(String[] data) throws IOException {
+		List<String> without_stop_words = new ArrayList<String>();
+		String[] final_stage = null;
 
-		List<String> without_unwanted_symbols=Removing_Unwanted_Symbols(data);
-		if(without_unwanted_symbols.size()!=0) {
-			without_stop_words = RemoveStopWords(without_unwanted_symbols, "C:\\Users\\khaled\\Desktop\\indexo\\src\\stopwords.txt");
-			if(without_stop_words.size()!=0)
+		List<String> without_unwanted_symbols = Removing_Unwanted_Symbols(data);
+		if (without_unwanted_symbols.size() != 0) {
+			without_stop_words = RemoveStopWords(without_unwanted_symbols,
+					"D:\\GITHUB\\Search-Engine\\SearchEngine\\src\\stopwords.txt");
+			if (without_stop_words.size() != 0)
 				final_stage = getStemmedWords(without_stop_words);
 		}
 		return final_stage;
-	}
-
-	/*
-	 *
-	 *
-	 * QUERY PROCESSOR
-	 *
-	 *
-	 */
-
-	public String[] getQuery(String query_file_path) throws IOException {
-		File file = new File(query_file_path);
-		BufferedReader reader = new BufferedReader(new FileReader(file));
-		String word_;
-		String[] strArray = null;
-
-		while ((word_ = reader.readLine()) != null) {
-			strArray = word_.split(" ");
-		}
-		reader.close();
-
-		PrintWriter writer = new PrintWriter(file);
-		writer.print("");
-		writer.close();
-		return processData(strArray);
-	}
-
-	public int[] String2Int(String index)
-	{
-		int[]info=new int[3];
-
-		String []indecies=index.split(" ");
-		List<String> stringinfo=Removing_Unwanted_Symbols(indecies);
-		int i=0;
-		for(String st:stringinfo)
-		{
-			info[i]=Integer.parseInt(st);
-			i++;
-		}
-		return info;
 	}
 
 }
