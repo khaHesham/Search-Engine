@@ -1,0 +1,8 @@
+news.sky.com
+facebook.com
+hackernews.com
+geeksforgeeks.org
+stackoverflow.com/questions/
+bbc.com/news
+Instagram.com
+cnn.com
